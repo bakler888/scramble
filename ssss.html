@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scrambled Word Game</title>
+</head>
+<body>
+    <h1>Unscramble the Word</h1>
+
+    <div id="word-container">
+        <p id="scrambled-word"></p>
+    </div>
+
+    <input type="text" id="guess" placeholder="Your Guess">
+    <button id="check-button">Check</button>
+    <p id="result"></p>
+
+    <script>
+        // Define an array of words to choose from
+        const words = ["apple", "banana", "cherry", "grape", "orange"];
+
+        // Function to select a random word from the array
+        function selectRandomWord() {
+            return words[Math.floor(Math.random() * words.length)];
+        }
+
+        // Function to scramble a word
+        function scrambleWord(word) {
+            strarray = lblWord.innerHTML; 
+            for (i = 0; i < strarray.length; i++) {
+            return word.split('').sort(() => 0.5 - Math.random() * i).join('');
+        }}
+
+        // Initialize the game
+        let currentWord = selectRandomWord();
+        let scrambled = scrambleWord(currentWord);
+
+        document.getElementById("scrambled-word").textContent = scrambled;
+
+        document.getElementById("check-button").addEventListener("click", function() {
+            const guess = document.getElementById("guess").value;
+            if (guess.toLowerCase() === currentWord) {
+                document.getElementById("result").textContent = "Correct!";
+                currentWord = selectRandomWord();
+                scrambled = scrambleWord(currentWord);
+                document.getElementById("scrambled-word").textContent = scrambled;
+            } else {
+                document.getElementById("result").textContent = "Incorrect. Try again.";
+            }
+        });
+    </script>
+</body>
+</html>
